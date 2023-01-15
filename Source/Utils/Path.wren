@@ -11,9 +11,10 @@
 ///  '//' - Server root.
 /// </summary>
 class Path {
-	// string _value
-	// int _rootEndLocation
-	// int _fileNameStartLocation
+	// TODO: Private access
+	value=(value) { _value = value }
+	rootEndLocation=(value) { _rootEndLocation = value }
+	fileNameStartLocation=(value) { _fileNameStartLocation = value }
 
 	/// <summary>
 	/// Initializes a new instance of the <see cref="Path"/> class.
@@ -129,8 +130,9 @@ class Path {
 		// Otherwise return one less directory
 		if (this.HasFileName) {
 			// Pass along the path minus the filename
-			result.value = _value[0..._fileNameStartLocation]
-			result.fileNameStartLocation = result.value.count
+			var value = _value[0..._fileNameStartLocation]
+			result.value = value
+			result.fileNameStartLocation = value.count
 		} else {
 			// Pull apart the directories and remove the last one
 			// TODO: This can be done in place and then a substring returned for perf gains
