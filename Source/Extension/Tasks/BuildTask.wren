@@ -30,7 +30,7 @@ class BuildTask is SoupTask {
 
 		var sourceRootDirectory = Path.new(buildTable["SourceRootDirectory"])
 		var targetRootDirectory = Path.new(buildTable["TargetRootDirectory"])
-		var binaryDirectory = Path.new(buildTable["BinaryDirectory"])
+		var scriptDirectory = Path.new(buildTable["ScriptDirectory"])
 
 		var sourceFiles = []
 		if (buildTable.containsKey("Source")) {
@@ -46,12 +46,12 @@ class BuildTask is SoupTask {
 		var buildOperations = BuildTask.build(
 			sourceRootDirectory,
 			targetRootDirectory,
-			binaryDirectory,
+			scriptDirectory,
 			sourceFiles,
 			moduleDependencies)
 
 		// Always pass along required input to shared build tasks
-		var mainModuleTargetDirectory = targetRootDirectory + binaryDirectory + Path.new("Main/")
+		var mainModuleTargetDirectory = targetRootDirectory + scriptDirectory + Path.new("Main/")
 		var sharedBuildTable = MapExtensions.EnsureTable(sharedState, "Build")
 		sharedBuildTable["TargetDirectory"] = mainModuleTargetDirectory.toString
 		sharedBuildTable["Source"] = ListExtensions.ConvertFromPathList(sourceFiles)
@@ -73,7 +73,7 @@ class BuildTask is SoupTask {
 	static build(
 		sourceRootDirectory,
 		targetRootDirectory,
-		binaryDirectory,
+		scriptDirectory,
 		sourceFiles,
 		moduleDependencies) {
 		var result = []
@@ -82,13 +82,13 @@ class BuildTask is SoupTask {
 		result.add(
 			SharedOperations.CreateCreateDirectoryOperation(
 				targetRootDirectory,
-				binaryDirectory))
+				scriptDirectory))
 
 		// Copy the main module
 		result = result + BuildTask.copyModule(
 			sourceRootDirectory,
 			targetRootDirectory,
-			binaryDirectory,
+			scriptDirectory,
 			"Main",
 			sourceFiles)
 
@@ -100,10 +100,28 @@ class BuildTask is SoupTask {
 			result = result + BuildTask.copyModule(
 				moduleTargetDirectory,
 				targetRootDirectory,
-				binaryDirectory,
+				scriptDirectory,
 				moduleName,
 				moduleSourceFiles)
 		}
+
+		// Create the Module Bundle definitions
+		var moduleBundles = ""
+		moduleBundles = moduleBundles + "Bundles: {\n"
+		for (moduleName in moduleDependencies.keys) {
+			var moduleBundleDirectory = Path.new(moduleName + "/")
+			moduleBundles = moduleBundles + "\t\"%(moduleName)\": { Root: \"%(moduleBundleDirectory)\" }\n"
+		}
+
+		moduleBundles = moduleBundles + "}\n"
+
+		// Write the bundle file
+		var moduleBundlesFile = scriptDirectory + Path.new("Bundles.sml")
+		result.add(
+			SharedOperations.CreateWriteFileOperation(
+				targetRootDirectory,
+				moduleBundlesFile,
+				moduleBundles))
 
 		return result
 	}
@@ -111,13 +129,13 @@ class BuildTask is SoupTask {
 	static copyModule(
 		sourceRootDirectory,
 		targetRootDirectory,
-		binaryDirectory,
+		scriptDirectory,
 		name,
 		sourceFiles) {
 		var result = []
 
 		Soup.info("Copy Module: %(name)")
-		var moduleDirectory = binaryDirectory + Path.new(name + "/")
+		var moduleDirectory = scriptDirectory + Path.new(name + "/")
 
 		// Discover all unique sub folders
 		var folderSet = Set.new()

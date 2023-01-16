@@ -32,7 +32,7 @@ class BuildTaskUnitTests {
 		buildTable["TargetName"] = "Program"
 		buildTable["SourceRootDirectory"] = "C:/source/"
 		buildTable["TargetRootDirectory"] = "C:/target/"
-		buildTable["BinaryDirectory"] = "bin/"
+		buildTable["ScriptDirectory"] = "script/"
 		buildTable["Source"] = []
 
 		// Setup parameters table
@@ -52,22 +52,31 @@ class BuildTaskUnitTests {
 		// Verify build state
 		var expectedBuildOperations = [
 			SoupTestOperation.new(
-				"MakeDir [./bin/]",
+				"MakeDir [./script/]",
 				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
-				"\"./bin/\"",
+				"\"./script/\"",
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("bin/"),
+					Path.new("script/"),
 				]),
 			SoupTestOperation.new(
-				"MakeDir [./bin/Main/]",
+				"MakeDir [./script/Main/]",
 				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
-				"\"./bin/Main/\"",
+				"\"./script/Main/\"",
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("bin/Main/"),
+					Path.new("script/Main/"),
+				]),
+			SoupTestOperation.new(
+				"WriteFile [./script/Bundles.sml]",
+				Path.new("writefile.exe"),
+				"\"./script/Bundles.sml\" \"Bundles: {\n}\n\"",
+				Path.new("C:/target/"),
+				[],
+				[
+					Path.new("script/Bundles.sml"),
 				]),
 		]
 
@@ -88,7 +97,7 @@ class BuildTaskUnitTests {
 		buildTable["TargetName"] = "Program"
 		buildTable["SourceRootDirectory"] = "C:/source/"
 		buildTable["TargetRootDirectory"] = "C:/target/"
-		buildTable["BinaryDirectory"] = "bin/"
+		buildTable["ScriptDirectory"] = "script/"
 		buildTable["Source"] = [
 			"TestFile.wren",
 		]
@@ -110,33 +119,42 @@ class BuildTaskUnitTests {
 		// Verify build state
 		var expectedBuildOperations = [
 			SoupTestOperation.new(
-				"MakeDir [./bin/]",
+				"MakeDir [./script/]",
 				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
-				"\"./bin/\"",
+				"\"./script/\"",
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("./bin/"),
+					Path.new("./script/"),
 				]),
 			SoupTestOperation.new(
-				"MakeDir [./bin/Main/]",
+				"MakeDir [./script/Main/]",
 				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
-				"\"./bin/Main/\"",
+				"\"./script/Main/\"",
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("bin/Main/"),
+					Path.new("script/Main/"),
 				]),
 			SoupTestOperation.new(
-				"Copy [C:/source/TestFile.wren] -> [./bin/Main/TestFile.wren]",
+				"Copy [C:/source/TestFile.wren] -> [./script/Main/TestFile.wren]",
 				Path.new("C:/Program Files/SoupBuild/Soup/Soup/copy.exe"),
-				"\"C:/source/TestFile.wren\" \"./bin/Main/TestFile.wren\"",
+				"\"C:/source/TestFile.wren\" \"./script/Main/TestFile.wren\"",
 				Path.new("C:/target/"),
 				[
 					Path.new("C:/source/TestFile.wren"),
 				],
 				[
-					Path.new("bin/Main/TestFile.wren"),
+					Path.new("script/Main/TestFile.wren"),
+				]),
+			SoupTestOperation.new(
+				"WriteFile [./script/Bundles.sml]",
+				Path.new("writefile.exe"),
+				"\"./script/Bundles.sml\" \"Bundles: {\n}\n\"",
+				Path.new("C:/target/"),
+				[],
+				[
+					Path.new("script/Bundles.sml"),
 				]),
 		]
 
@@ -157,7 +175,7 @@ class BuildTaskUnitTests {
 		buildTable["TargetName"] = "Program"
 		buildTable["SourceRootDirectory"] = "C:/source/"
 		buildTable["TargetRootDirectory"] = "C:/target/"
-		buildTable["BinaryDirectory"] = "bin/"
+		buildTable["ScriptDirectory"] = "script/"
 		buildTable["Source"] = [
 			"TestFile.wren",
 		]
@@ -188,53 +206,62 @@ class BuildTaskUnitTests {
 		// Verify build state
 		var expectedBuildOperations = [
 			SoupTestOperation.new(
-				"MakeDir [./bin/]",
+				"MakeDir [./script/]",
 				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
-				"\"./bin/\"",
+				"\"./script/\"",
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("./bin/"),
+					Path.new("./script/"),
 				]),
 			SoupTestOperation.new(
-				"MakeDir [./bin/Main/]",
+				"MakeDir [./script/Main/]",
 				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
-				"\"./bin/Main/\"",
+				"\"./script/Main/\"",
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("bin/Main/"),
+					Path.new("script/Main/"),
 				]),
 			SoupTestOperation.new(
-				"Copy [C:/source/TestFile.wren] -> [./bin/Main/TestFile.wren]",
+				"Copy [C:/source/TestFile.wren] -> [./script/Main/TestFile.wren]",
 				Path.new("C:/Program Files/SoupBuild/Soup/Soup/copy.exe"),
-				"\"C:/source/TestFile.wren\" \"./bin/Main/TestFile.wren\"",
+				"\"C:/source/TestFile.wren\" \"./script/Main/TestFile.wren\"",
 				Path.new("C:/target/"),
 				[
 					Path.new("C:/source/TestFile.wren"),
 				],
 				[
-					Path.new("bin/Main/TestFile.wren"),
+					Path.new("script/Main/TestFile.wren"),
 				]),
 			SoupTestOperation.new(
-				"MakeDir [./bin/Proj1/]",
+				"MakeDir [./script/Proj1/]",
 				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
-				"\"./bin/Proj1/\"",
+				"\"./script/Proj1/\"",
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("bin/Proj1/"),
+					Path.new("script/Proj1/"),
 				]),
 			SoupTestOperation.new(
-				"Copy [C:/target2/TestFile2.wren] -> [./bin/Proj1/TestFile2.wren]",
+				"Copy [C:/target2/TestFile2.wren] -> [./script/Proj1/TestFile2.wren]",
 				Path.new("C:/Program Files/SoupBuild/Soup/Soup/copy.exe"),
-				"\"C:/target2/TestFile2.wren\" \"./bin/Proj1/TestFile2.wren\"",
+				"\"C:/target2/TestFile2.wren\" \"./script/Proj1/TestFile2.wren\"",
 				Path.new("C:/target/"),
 				[
 					Path.new("C:/target2/TestFile2.wren"),
 				],
 				[
-					Path.new("bin/Proj1/TestFile2.wren"),
+					Path.new("script/Proj1/TestFile2.wren"),
+				]),
+			SoupTestOperation.new(
+				"WriteFile [./script/Bundles.sml]",
+				Path.new("writefile.exe"),
+				"\"./script/Bundles.sml\" \"Bundles: {\n\t\"Proj1\": { Root: \"./Proj1/\" }\n}\n\"",
+				Path.new("C:/target/"),
+				[],
+				[
+					Path.new("script/Bundles.sml"),
 				]),
 		]
 

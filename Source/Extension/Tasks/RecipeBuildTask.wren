@@ -41,7 +41,7 @@ class RecipeBuildTask is SoupTask {
 
 		// Build up arguments to build this individual recipe
 		var targetDirectory = Path.new(parametersTable["TargetDirectory"])
-		var binaryDirectory = Path.new("bin/")
+		var scriptDirectory = Path.new("script/")
 
 		// Load the source files if present
 		var sourceFiles = []
@@ -52,7 +52,7 @@ class RecipeBuildTask is SoupTask {
 		buildTable["TargetName"] = name
 		buildTable["SourceRootDirectory"] = packageRoot.toString
 		buildTable["TargetRootDirectory"] = targetDirectory.toString
-		buildTable["BinaryDirectory"] = binaryDirectory.toString
+		buildTable["ScriptDirectory"] = scriptDirectory.toString
 
 		ListExtensions.Append(
 			MapExtensions.EnsureList(buildTable, "Source"),
