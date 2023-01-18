@@ -3,11 +3,11 @@
 // </copyright>
 
 import "soup" for Soup, SoupTask
-import "../../Utils/Path" for Path
-import "../../Utils/ListExtensions" for ListExtensions
-import "../../Utils/MapExtensions" for MapExtensions
-import "../../Utils/SharedOperations" for SharedOperations
-import "../../Utils/Set" for Set
+import "Soup.Build.Utils:./Path" for Path
+import "Soup.Build.Utils:./ListExtensions" for ListExtensions
+import "Soup.Build.Utils:./MapExtensions" for MapExtensions
+import "Soup.Build.Utils:./SharedOperations" for SharedOperations
+import "Soup.Build.Utils:./Set" for Set
 
 class BuildTask is SoupTask {
 	/// <summary>
