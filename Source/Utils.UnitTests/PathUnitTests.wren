@@ -2,7 +2,7 @@
 // Copyright (c) Soup. All rights reserved.
 // </copyright>
 
-import "../Utils/Path" for Path
+import "Soup.Build.Utils:./Path" for Path
 import "../Test/Assert" for Assert
 
 class PathUnitTests {
