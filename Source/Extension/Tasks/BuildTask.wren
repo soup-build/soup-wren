@@ -43,18 +43,22 @@ class BuildTask is SoupTask {
 			moduleDependencies = buildTable["ModuleDependencies"]
 		}
 
+		var moduleBundlesFile = scriptDirectory + Path.new("Bundles.sml")
 		var buildOperations = BuildTask.build(
 			sourceRootDirectory,
 			targetRootDirectory,
 			scriptDirectory,
 			sourceFiles,
-			moduleDependencies)
+			moduleDependencies,
+			moduleBundlesFile)
 
 		// Always pass along required input to shared build tasks
 		var mainModuleTargetDirectory = targetRootDirectory + scriptDirectory + Path.new("Main/")
+		var moduleBundlesTargetFile = targetRootDirectory + moduleBundlesFile
 		var sharedBuildTable = MapExtensions.EnsureTable(sharedState, "Build")
 		sharedBuildTable["TargetDirectory"] = mainModuleTargetDirectory.toString
 		sharedBuildTable["Source"] = ListExtensions.ConvertFromPathList(sourceFiles)
+		sharedBuildTable["ModuleBundle"] = moduleBundlesTargetFile.toString
 
 		// Register the build operations
 		for (operation in buildOperations) {
@@ -75,7 +79,8 @@ class BuildTask is SoupTask {
 		targetRootDirectory,
 		scriptDirectory,
 		sourceFiles,
-		moduleDependencies) {
+		moduleDependencies,
+		moduleBundlesFile) {
 		var result = []
 
 		// Ensure the output directories exists as the first step
@@ -116,7 +121,6 @@ class BuildTask is SoupTask {
 		moduleBundles = moduleBundles + "}\n"
 
 		// Write the bundle file
-		var moduleBundlesFile = scriptDirectory + Path.new("Bundles.sml")
 		result.add(
 			SharedOperations.CreateWriteFileOperation(
 				targetRootDirectory,
