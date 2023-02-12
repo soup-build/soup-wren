@@ -30,17 +30,18 @@ class RecipeBuildTask is SoupTask {
 		var globalState = Soup.globalState
 		var activeState = Soup.activeState
 		var parametersTable = globalState["Parameters"]
+		var contextTable = globalState["Context"]
 		var recipeTable = globalState["Recipe"]
 		var buildTable = MapExtensions.EnsureTable(activeState, "Build")
 
 		// Load the input properties
-		var packageRoot = Path.new(parametersTable["PackageDirectory"])
+		var packageRoot = Path.new(contextTable["PackageDirectory"])
 
 		// Load Recipe properties
 		var name = recipeTable["Name"]
 
 		// Build up arguments to build this individual recipe
-		var targetDirectory = Path.new(parametersTable["TargetDirectory"])
+		var targetDirectory = Path.new(contextTable["TargetDirectory"])
 		var scriptDirectory = Path.new("script/")
 
 		// Load the source files if present

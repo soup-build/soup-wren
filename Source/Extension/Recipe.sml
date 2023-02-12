@@ -1,6 +1,6 @@
 Name: "Soup.Wren"
 Language: "Wren|0.1"
-Version: "0.1.1"
+Version: "0.1.2"
 Source: [
 	"Tasks/BuildTask.wren"
 	"Tasks/RecipeBuildTask.wren"
@@ -9,6 +9,6 @@ Source: [
 
 Dependencies: {
 	Runtime: [
-		"Soup.Build.Utils@0.1.0"
+		"Soup.Build.Utils@0.2.0"
 	]
 }

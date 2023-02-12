@@ -2,6 +2,7 @@
 // Copyright (c) Soup. All rights reserved.
 // </copyright>
 
+import "soup" for Soup
 import "./BuildOperation" for BuildOperation
 import "./Path" for Path
 
@@ -16,11 +17,12 @@ class SharedOperations {
 		workingDirectory,
 		source,
 		destination) {
+		// Discover the dependency tool
+		var copyExecutable = SharedOperations.ResolveRuntimeDependencyRunExectable("C++|copy")
+
 		var title = "Copy [%(source)] -> [%(destination)]"
 
-		var moduleFolder = Path.new("C:/Program Files/SoupBuild/Soup/Soup/")
-
-		var program = moduleFolder + Path.new("copy.exe")
+		var program = Path.new(copyExecutable)
 		var inputFiles = [
 			source,
 		]
@@ -50,12 +52,12 @@ class SharedOperations {
 			Fiber.abort("Cannot create a directory with a filename.")
 		}
 
+		// Discover the dependency tool
+		var mkdirExecutable = SharedOperations.ResolveRuntimeDependencyRunExectable("C++|mkdir")
+
 		var title = "MakeDir [%(directory)]"
 
-		// TODO: Real path
-		var moduleFolder = Path.new("C:/Program Files/SoupBuild/Soup/Soup/")
-
-		var program = moduleFolder + Path.new("mkdir.exe")
+		var program = Path.new(mkdirExecutable)
 		var inputFiles = []
 		var outputFiles = [
 			directory,
@@ -103,5 +105,21 @@ class SharedOperations {
 			arguments,
 			inputFiles,
 			outputFiles)
+	}
+
+	static ResolveRuntimeDependencyRunExectable(dependencyName) {
+		var dependencies = Soup.globalState["Dependencies"]
+		if (!dependencies.containsKey("Runtime")) {
+			Soup.info("%(dependencies)")
+			Fiber.abort("Missing Runtime Dependencies for \"%(dependencyName)\"")
+		}
+
+		var runtimeDependencies = dependencies["Runtime"]
+		if (!runtimeDependencies.containsKey(dependencyName)) {
+			Fiber.abort("Missing Runtime Dependency \"%(dependencyName)\"")
+		}
+
+		var dependency = runtimeDependencies[dependencyName]
+		return dependency["Build"]["RunExectable"]
 	}
 }

@@ -100,14 +100,16 @@ class BuildTask is SoupTask {
 		// Copy all module dependencies
 		for (moduleName in moduleDependencies.keys) {
 			var moduleTable = moduleDependencies[moduleName]
-			var moduleSourceFiles = ListExtensions.ConvertToPathList(moduleTable["Source"])
-			var moduleTargetDirectory = Path.new(moduleTable["TargetDirectory"])
-			result = result + BuildTask.copyModule(
-				moduleTargetDirectory,
-				targetRootDirectory,
-				scriptDirectory,
-				moduleName,
-				moduleSourceFiles)
+			if (moduleTable.containsKey("Source")) {
+				var moduleSourceFiles = ListExtensions.ConvertToPathList(moduleTable["Source"])
+				var moduleTargetDirectory = Path.new(moduleTable["TargetDirectory"])
+				result = result + BuildTask.copyModule(
+					moduleTargetDirectory,
+					targetRootDirectory,
+					scriptDirectory,
+					moduleName,
+					moduleSourceFiles)
+			}
 		}
 
 		// Create the Module Bundle definitions

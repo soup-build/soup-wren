@@ -43,15 +43,15 @@ class ResolveDependenciesTask is SoupTask {
 					var dependencyTable = runtimeDependenciesTable[dependencyName]
 					var moduleTable = MapExtensions.EnsureTable(moduleDependenciesTable, dependencyName)
 
-					if (dependencyTable.containsKey("Build")) {
-						var dependencyBuildTable = dependencyTable["Build"]
+					var dependencySharedStateTable = dependencyTable["SharedState"]
+					if (dependencySharedStateTable.containsKey("Build")) {
+						var dependencyBuildTable = dependencySharedStateTable["Build"]
 
 						if (dependencyBuildTable.containsKey("Source") && dependencyBuildTable.containsKey("TargetDirectory")) {
 							var sourceDependencies = dependencyBuildTable["Source"]
 							moduleTable["Source"] = sourceDependencies
 							moduleTable["TargetDirectory"] = dependencyBuildTable["TargetDirectory"]
 						}
-						
 					}
 				}
 			}
