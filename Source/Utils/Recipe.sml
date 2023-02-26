@@ -1,6 +1,6 @@
 Name: "Soup.Build.Utils"
 Language: "Wren|0.1"
-Version: "0.2.1"
+Version: "0.3.0"
 Source: [
 	"BuildOperation.wren"
 	"ListExtensions.wren"

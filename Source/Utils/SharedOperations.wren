@@ -18,7 +18,7 @@ class SharedOperations {
 		source,
 		destination) {
 		// Discover the dependency tool
-		var copyExecutable = SharedOperations.ResolveRuntimeDependencyRunExectable("C++|copy")
+		var copyExecutable = SharedOperations.ResolveRuntimeDependencyRunExectable("copy")
 
 		var title = "Copy [%(source)] -> [%(destination)]"
 
@@ -53,7 +53,7 @@ class SharedOperations {
 		}
 
 		// Discover the dependency tool
-		var mkdirExecutable = SharedOperations.ResolveRuntimeDependencyRunExectable("C++|mkdir")
+		var mkdirExecutable = SharedOperations.ResolveRuntimeDependencyRunExectable("mkdir")
 
 		var title = "MakeDir [%(directory)]"
 
@@ -109,17 +109,17 @@ class SharedOperations {
 
 	static ResolveRuntimeDependencyRunExectable(dependencyName) {
 		var dependencies = Soup.globalState["Dependencies"]
-		if (!dependencies.containsKey("Runtime")) {
-			Soup.info("%(dependencies)")
-			Fiber.abort("Missing Runtime Dependencies for \"%(dependencyName)\"")
+		if (!dependencies.containsKey("Tool")) {
+			Fiber.abort("Missing Tool Dependencies for \"%(dependencyName)\"")
 		}
 
-		var runtimeDependencies = dependencies["Runtime"]
+		var runtimeDependencies = dependencies["Tool"]
 		if (!runtimeDependencies.containsKey(dependencyName)) {
-			Fiber.abort("Missing Runtime Dependency \"%(dependencyName)\"")
+			Fiber.abort("Missing Tool Dependency \"%(dependencyName)\"")
 		}
 
 		var dependency = runtimeDependencies[dependencyName]
-		return dependency["Build"]["RunExectable"]
+			Soup.info("dep -> %(dependency)")
+		return dependency["SharedState"]["Build"]["RunExecutable"]
 	}
 }
