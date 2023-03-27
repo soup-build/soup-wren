@@ -39,6 +39,19 @@ class BuildTaskUnitTests {
 		var parametersTable = {}
 		globalState["Parameters"] = parametersTable
 
+		// Setup dependencies table
+		var dependenciesTable = {}
+		globalState["Dependencies"] = dependenciesTable
+		dependenciesTable["Tool"] = {
+			"mkdir": {
+				"SharedState": {
+					"Build": {
+						"RunExecutable": "/TARGET/mkdir.exe"
+					}
+				}
+			}
+		}
+
 		BuildTask.evaluate()
 
 		// Verify expected logs
@@ -53,7 +66,7 @@ class BuildTaskUnitTests {
 		var expectedBuildOperations = [
 			SoupTestOperation.new(
 				"MakeDir [./script/]",
-				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
+				Path.new("/TARGET/mkdir.exe"),
 				"\"./script/\"",
 				Path.new("C:/target/"),
 				[],
@@ -62,7 +75,7 @@ class BuildTaskUnitTests {
 				]),
 			SoupTestOperation.new(
 				"MakeDir [./script/Main/]",
-				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
+				Path.new("/TARGET/mkdir.exe"),
 				"\"./script/Main/\"",
 				Path.new("C:/target/"),
 				[],
@@ -106,6 +119,26 @@ class BuildTaskUnitTests {
 		var parametersTable = {}
 		globalState["Parameters"] = parametersTable
 
+		// Setup dependencies table
+		var dependenciesTable = {}
+		globalState["Dependencies"] = dependenciesTable
+		dependenciesTable["Tool"] = {
+			"copy": {
+				"SharedState": {
+					"Build": {
+						"RunExecutable": "/TARGET/copy.exe"
+					}
+				}
+			},
+			"mkdir": {
+				"SharedState": {
+					"Build": {
+						"RunExecutable": "/TARGET/mkdir.exe"
+					}
+				}
+			}
+		}
+
 		BuildTask.evaluate()
 
 		// Verify expected logs
@@ -120,7 +153,7 @@ class BuildTaskUnitTests {
 		var expectedBuildOperations = [
 			SoupTestOperation.new(
 				"MakeDir [./script/]",
-				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
+				Path.new("/TARGET/mkdir.exe"),
 				"\"./script/\"",
 				Path.new("C:/target/"),
 				[],
@@ -129,7 +162,7 @@ class BuildTaskUnitTests {
 				]),
 			SoupTestOperation.new(
 				"MakeDir [./script/Main/]",
-				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
+				Path.new("/TARGET/mkdir.exe"),
 				"\"./script/Main/\"",
 				Path.new("C:/target/"),
 				[],
@@ -138,7 +171,7 @@ class BuildTaskUnitTests {
 				]),
 			SoupTestOperation.new(
 				"Copy [C:/source/TestFile.wren] -> [./script/Main/TestFile.wren]",
-				Path.new("C:/Program Files/SoupBuild/Soup/Soup/copy.exe"),
+				Path.new("/TARGET/copy.exe"),
 				"\"C:/source/TestFile.wren\" \"./script/Main/TestFile.wren\"",
 				Path.new("C:/target/"),
 				[
@@ -192,6 +225,26 @@ class BuildTaskUnitTests {
 		var parametersTable = {}
 		globalState["Parameters"] = parametersTable
 
+		// Setup dependencies table
+		var dependenciesTable = {}
+		globalState["Dependencies"] = dependenciesTable
+		dependenciesTable["Tool"] = {
+			"copy": {
+				"SharedState": {
+					"Build": {
+						"RunExecutable": "/TARGET/copy.exe"
+					}
+				}
+			},
+			"mkdir": {
+				"SharedState": {
+					"Build": {
+						"RunExecutable": "/TARGET/mkdir.exe"
+					}
+				}
+			}
+		}
+
 		BuildTask.evaluate()
 
 		// Verify expected logs
@@ -207,7 +260,7 @@ class BuildTaskUnitTests {
 		var expectedBuildOperations = [
 			SoupTestOperation.new(
 				"MakeDir [./script/]",
-				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
+				Path.new("/TARGET/mkdir.exe"),
 				"\"./script/\"",
 				Path.new("C:/target/"),
 				[],
@@ -216,7 +269,7 @@ class BuildTaskUnitTests {
 				]),
 			SoupTestOperation.new(
 				"MakeDir [./script/Main/]",
-				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
+				Path.new("/TARGET/mkdir.exe"),
 				"\"./script/Main/\"",
 				Path.new("C:/target/"),
 				[],
@@ -225,7 +278,7 @@ class BuildTaskUnitTests {
 				]),
 			SoupTestOperation.new(
 				"Copy [C:/source/TestFile.wren] -> [./script/Main/TestFile.wren]",
-				Path.new("C:/Program Files/SoupBuild/Soup/Soup/copy.exe"),
+				Path.new("/TARGET/copy.exe"),
 				"\"C:/source/TestFile.wren\" \"./script/Main/TestFile.wren\"",
 				Path.new("C:/target/"),
 				[
@@ -236,7 +289,7 @@ class BuildTaskUnitTests {
 				]),
 			SoupTestOperation.new(
 				"MakeDir [./script/Proj1/]",
-				Path.new("C:/Program Files/SoupBuild/Soup/Soup/mkdir.exe"),
+				Path.new("/TARGET/mkdir.exe"),
 				"\"./script/Proj1/\"",
 				Path.new("C:/target/"),
 				[],
@@ -245,7 +298,7 @@ class BuildTaskUnitTests {
 				]),
 			SoupTestOperation.new(
 				"Copy [C:/target2/TestFile2.wren] -> [./script/Proj1/TestFile2.wren]",
-				Path.new("C:/Program Files/SoupBuild/Soup/Soup/copy.exe"),
+				Path.new("/TARGET/copy.exe"),
 				"\"C:/target2/TestFile2.wren\" \"./script/Proj1/TestFile2.wren\"",
 				Path.new("C:/target/"),
 				[

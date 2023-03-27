@@ -119,7 +119,6 @@ class SharedOperations {
 		}
 
 		var dependency = runtimeDependencies[dependencyName]
-			Soup.info("dep -> %(dependency)")
 		return dependency["SharedState"]["Build"]["RunExecutable"]
 	}
 }

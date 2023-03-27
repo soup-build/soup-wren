@@ -1,6 +1,6 @@
 Name: "Soup.Wren"
 Language: "Wren|0.1"
-Version: "0.2.0"
+Version: "0.2.1"
 Source: [
 	"Tasks/BuildTask.wren"
 	"Tasks/RecipeBuildTask.wren"
