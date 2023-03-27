@@ -2,7 +2,7 @@ Version: 4
 Closures: {
 	Root: {
 		Wren: [
-			{ Name: "Soup.Build.Utils", Version: "../Utils/", Build: "Build0", Tool: "Tool0" }
+			{ Name: "Soup.Build.Utils", Version: "0.4.0", Build: "Build0", Tool: "Tool0" }
 			{ Name: "Soup.Wren", Version: "./", Build: "Build0", Tool: "Tool0" }
 		]
 	}

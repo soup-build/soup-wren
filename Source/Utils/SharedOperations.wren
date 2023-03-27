@@ -31,7 +31,10 @@ class SharedOperations {
 		]
 
 		// Build the arguments
-		var arguments = "\"%(source)\" \"%(destination)\""
+		var arguments = [
+			"%(source)",
+			"%(destination)",
+		]
 
 		return BuildOperation.new(
 			title,
@@ -64,7 +67,9 @@ class SharedOperations {
 		]
 
 		// Build the arguments
-		var arguments = "\"%(directory)\""
+		var arguments = [
+			"%(directory)",
+		]
 
 		return BuildOperation.new(
 			title,
@@ -96,7 +101,10 @@ class SharedOperations {
 		]
 
 		// Build the arguments
-		var arguments = "\"%(destination)\" \"%(content)\""
+		var arguments = [
+			"%(destination)",
+			"%(content)",
+		]
 
 		return BuildOperation.new(
 			title,

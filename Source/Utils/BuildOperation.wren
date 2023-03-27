@@ -37,7 +37,7 @@ class BuildOperation {
 		return this.Title == other.Title &&
 			this.WorkingDirectory == other.WorkingDirectory  &&
 			this.Executable == other.Executable &&
-			this.Arguments == other.Arguments &&
+			ListExtensions.SequenceEqual(this.Arguments, other.Arguments) &&
 			ListExtensions.SequenceEqual(this.DeclaredInput, other.DeclaredInput) &&
 			ListExtensions.SequenceEqual(this.DeclaredOutput, other.DeclaredOutput)
 	}

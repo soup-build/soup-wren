@@ -67,7 +67,9 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"MakeDir [./script/]",
 				Path.new("/TARGET/mkdir.exe"),
-				"\"./script/\"",
+				[
+					"./script/",
+				],
 				Path.new("C:/target/"),
 				[],
 				[
@@ -76,7 +78,9 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"MakeDir [./script/Main/]",
 				Path.new("/TARGET/mkdir.exe"),
-				"\"./script/Main/\"",
+				[
+					"./script/Main/",
+				],
 				Path.new("C:/target/"),
 				[],
 				[
@@ -85,7 +89,10 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"WriteFile [./script/Bundles.sml]",
 				Path.new("writefile.exe"),
-				"\"./script/Bundles.sml\" \"Bundles: {\n}\n\"",
+				[
+					"./script/Bundles.sml",
+					"Bundles: {\n}\n",
+				],
 				Path.new("C:/target/"),
 				[],
 				[
@@ -154,7 +161,9 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"MakeDir [./script/]",
 				Path.new("/TARGET/mkdir.exe"),
-				"\"./script/\"",
+				[
+					"./script/",
+				],
 				Path.new("C:/target/"),
 				[],
 				[
@@ -163,7 +172,9 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"MakeDir [./script/Main/]",
 				Path.new("/TARGET/mkdir.exe"),
-				"\"./script/Main/\"",
+				[
+					"./script/Main/",
+				],
 				Path.new("C:/target/"),
 				[],
 				[
@@ -172,7 +183,10 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"Copy [C:/source/TestFile.wren] -> [./script/Main/TestFile.wren]",
 				Path.new("/TARGET/copy.exe"),
-				"\"C:/source/TestFile.wren\" \"./script/Main/TestFile.wren\"",
+				[
+					"C:/source/TestFile.wren",
+					"./script/Main/TestFile.wren",
+				],
 				Path.new("C:/target/"),
 				[
 					Path.new("C:/source/TestFile.wren"),
@@ -183,7 +197,10 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"WriteFile [./script/Bundles.sml]",
 				Path.new("writefile.exe"),
-				"\"./script/Bundles.sml\" \"Bundles: {\n}\n\"",
+				[
+					"./script/Bundles.sml",
+					"Bundles: {\n}\n",
+				],
 				Path.new("C:/target/"),
 				[],
 				[
@@ -261,7 +278,9 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"MakeDir [./script/]",
 				Path.new("/TARGET/mkdir.exe"),
-				"\"./script/\"",
+				[
+					"./script/",
+				],
 				Path.new("C:/target/"),
 				[],
 				[
@@ -270,7 +289,9 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"MakeDir [./script/Main/]",
 				Path.new("/TARGET/mkdir.exe"),
-				"\"./script/Main/\"",
+				[
+					"./script/Main/",
+				],
 				Path.new("C:/target/"),
 				[],
 				[
@@ -279,7 +300,10 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"Copy [C:/source/TestFile.wren] -> [./script/Main/TestFile.wren]",
 				Path.new("/TARGET/copy.exe"),
-				"\"C:/source/TestFile.wren\" \"./script/Main/TestFile.wren\"",
+				[
+					"C:/source/TestFile.wren",
+					"./script/Main/TestFile.wren",
+				],
 				Path.new("C:/target/"),
 				[
 					Path.new("C:/source/TestFile.wren"),
@@ -290,7 +314,9 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"MakeDir [./script/Proj1/]",
 				Path.new("/TARGET/mkdir.exe"),
-				"\"./script/Proj1/\"",
+				[
+					"./script/Proj1/",
+				],
 				Path.new("C:/target/"),
 				[],
 				[
@@ -299,7 +325,10 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"Copy [C:/target2/TestFile2.wren] -> [./script/Proj1/TestFile2.wren]",
 				Path.new("/TARGET/copy.exe"),
-				"\"C:/target2/TestFile2.wren\" \"./script/Proj1/TestFile2.wren\"",
+				[
+					"C:/target2/TestFile2.wren",
+					"./script/Proj1/TestFile2.wren",
+				],
 				Path.new("C:/target/"),
 				[
 					Path.new("C:/target2/TestFile2.wren"),
@@ -310,7 +339,10 @@ class BuildTaskUnitTests {
 			SoupTestOperation.new(
 				"WriteFile [./script/Bundles.sml]",
 				Path.new("writefile.exe"),
-				"\"./script/Bundles.sml\" \"Bundles: {\n\t\"Proj1\": { Root: \"./Proj1/\" }\n}\n\"",
+				[
+					"./script/Bundles.sml",
+					"Bundles: {\n\t\"Proj1\": { Root: \"./Proj1/\" }\n}\n",
+				],
 				Path.new("C:/target/"),
 				[],
 				[
