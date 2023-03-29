@@ -9,7 +9,7 @@ Source: [
 
 Dependencies: {
 	Runtime: [
-		"Soup.Build.Utils@0.2.0"
+		"Soup.Build.Utils@0.4"
 	]
 	Tool: [
 		"C++|copy@1.0.0"
