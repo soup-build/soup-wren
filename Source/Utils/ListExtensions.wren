@@ -3,7 +3,8 @@ import "./Path" for Path
 
 class ListExtensions {
 	static SequenceEqual(lhs, rhs) {
-		// System.print("SequenceEqual %(lhs) == %(rhs) %(lhs.count)")
+		// System.print("SequenceEqual LHS: %(lhs)")
+		// System.print("SequenceEqual RHS: %(rhs)")
 		if (lhs is Null || rhs is Null) {
 			return lhs is Null && rhs is Null
 		}
@@ -13,8 +14,23 @@ class ListExtensions {
 		}
 
 		for (i in 0...lhs.count) {
-			// System.print("SequenceEqual %(lhs[i]) == %(rhs[i])")
-			if (!(lhs[i] == rhs[i])) {
+			// System.print("SequenceEqual value %(lhs[i]) == %(rhs[i])")
+			if (lhs[i].type.name == rhs[i].type.name) {
+				if (lhs[i].type == Map) {
+					System.abort("cannot compare map in list... sorry")
+				} else if (lhs[i].type == List) {
+					if (!ListExtensions.SequenceEqual(lhs[i], rhs[i])) {
+						// System.print("list list not equal")
+						return false
+					}
+				} else {
+					if (!(lhs[i] == rhs[i])) {
+						// System.print("list value not equal")
+						return false
+					}
+				}
+			} else {
+				// System.print("list mismatch types %(lhs[i].type.name) == %(rhs[i].type.name)")
 				return false
 			}
 		}
