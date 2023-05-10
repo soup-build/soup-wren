@@ -38,11 +38,11 @@ class RecipeBuildTaskUnitTests {
 		contextTable["TargetDirectory"] = "/(TARGET)/"
 		contextTable["PackageDirectory"] = "/(PACKAGE)/"
 
-		// Setup parameters table
-		var parametersTable = {}
-		globalState["Parameters"] = parametersTable
-		parametersTable["Compiler"] = "MOCK"
-		parametersTable["Flavor"] = "debug"
+		// Setup build table
+		var buildTable = {}
+		activeState["Build"] = buildTable
+		buildTable["Compiler"] = "MOCK"
+		buildTable["Flavor"] = "Debug"
 
 		RecipeBuildTask.evaluate()
 
