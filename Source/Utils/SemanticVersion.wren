@@ -138,15 +138,27 @@ class SemanticVersion {
 	/// <param name="lhs">The left hand side.</param>
 	/// <param name="rhs">The right hand side.</param>
 	<(rhs) {
-		return _major < rhs.Major ||
-			_minor < rhs.Minor ||
-			_patch < rhs.Patch
+		if (_major == rhs.Major) {
+			if (_minor == rhs.Minor) {
+				return _patch < rhs.Patch
+			} else {
+				return _minor < rhs.Minor
+			}
+		} else {
+			return _major < rhs.Major
+		}
 	}
 
 	>(rhs) {
-		return _major > rhs.Major ||
-			_minor > rhs.Minor ||
-			_patch > rhs.Patch
+		if (_major == rhs.Major) {
+			if (_minor == rhs.Minor) {
+				return _patch > rhs.Patch
+			} else {
+				return _minor > rhs.Minor
+			}
+		} else {
+			return _major > rhs.Major
+		}
 	}
 
 	/// <summary>
