@@ -3,11 +3,11 @@
 // </copyright>
 
 import "soup" for Soup, SoupTask
-import "Soup.Build.Utils:./Path" for Path
-import "Soup.Build.Utils:./ListExtensions" for ListExtensions
-import "Soup.Build.Utils:./MapExtensions" for MapExtensions
-import "Soup.Build.Utils:./SharedOperations" for SharedOperations
-import "Soup.Build.Utils:./Set" for Set
+import "mwasplund|Soup.Build.Utils:./Path" for Path
+import "mwasplund|Soup.Build.Utils:./ListExtensions" for ListExtensions
+import "mwasplund|Soup.Build.Utils:./MapExtensions" for MapExtensions
+import "mwasplund|Soup.Build.Utils:./SharedOperations" for SharedOperations
+import "mwasplund|Soup.Build.Utils:./Set" for Set
 
 class BuildTask is SoupTask {
 	/// <summary>
@@ -116,7 +116,7 @@ class BuildTask is SoupTask {
 		var moduleBundles = ""
 		moduleBundles = moduleBundles + "Bundles: {\n"
 		for (moduleName in moduleDependencies.keys) {
-			var moduleBundleDirectory = Path.new(moduleName + "/")
+			var moduleBundleDirectory = Path.new(moduleName.replace("|", "/") + "/")
 			moduleBundles = moduleBundles + "\t\"%(moduleName)\": { Root: \"%(moduleBundleDirectory)\" }\n"
 		}
 
@@ -141,7 +141,7 @@ class BuildTask is SoupTask {
 		var result = []
 
 		Soup.info("Copy Module: %(name)")
-		var moduleDirectory = scriptDirectory + Path.new(name + "/")
+		var moduleDirectory = scriptDirectory + Path.new(name.replace("|", "/") + "/")
 
 		// Discover all unique sub folders
 		var folderSet = Set.new()
