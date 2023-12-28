@@ -117,7 +117,7 @@ class BuildTask is SoupTask {
 		moduleBundles = moduleBundles + "Bundles: {\n"
 		for (moduleName in moduleDependencies.keys) {
 			var moduleBundleDirectory = Path.new(moduleName.replace("|", "/") + "/")
-			moduleBundles = moduleBundles + "\t\"%(moduleName)\": { Root: \"%(moduleBundleDirectory)\" }\n"
+			moduleBundles = moduleBundles + "\t'%(moduleName)': { Root: '%(moduleBundleDirectory)' }\n"
 		}
 
 		moduleBundles = moduleBundles + "}\n"

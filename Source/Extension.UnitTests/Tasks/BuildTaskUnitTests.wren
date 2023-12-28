@@ -341,7 +341,7 @@ class BuildTaskUnitTests {
 				Path.new("writefile.exe"),
 				[
 					"./script/Bundles.sml",
-					"Bundles: {\n\t\"Proj1\": { Root: \"./Proj1/\" }\n}\n",
+					"Bundles: {\n\t'Proj1': { Root: './Proj1/' }\n}\n",
 				],
 				Path.new("C:/target/"),
 				[],
