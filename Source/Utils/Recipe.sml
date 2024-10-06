@@ -1,4 +1,4 @@
-Name: 'Soup.Build.Utils'
+Name: 'Build.Utils'
 Language: 'Wren|0'
 Version: '0.7.0'
 Source: [
