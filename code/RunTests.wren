@@ -1,6 +1,6 @@
-import "./Utils.UnitTests/PathUnitTests" for PathUnitTests
-import "./Extension.UnitTests/Tasks/BuildTaskUnitTests" for BuildTaskUnitTests
-import "./Extension.UnitTests/Tasks/RecipeBuildTaskUnitTests" for RecipeBuildTaskUnitTests
+import "./utils-tests/PathUnitTests" for PathUnitTests
+import "./extension-tests/tasks/BuildTaskUnitTests" for BuildTaskUnitTests
+import "./extension-tests/tasks/RecipeBuildTaskUnitTests" for RecipeBuildTaskUnitTests
 
 var uut
 

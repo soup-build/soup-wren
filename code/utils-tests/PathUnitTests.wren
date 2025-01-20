@@ -3,7 +3,7 @@
 // </copyright>
 
 import "Soup|Build.Utils:./Path" for Path
-import "../Test/Assert" for Assert
+import "../test/Assert" for Assert
 
 class PathUnitTests {
 	construct new() {
