@@ -2,9 +2,9 @@ Name: "Soup.Wren"
 Language: "Wren|0"
 Version: "0.3.0"
 Source: [
-	"Tasks/BuildTask.wren"
-	"Tasks/RecipeBuildTask.wren"
-	"Tasks/ResolveDependenciesTask.wren"
+	"tasks/BuildTask.wren"
+	"tasks/RecipeBuildTask.wren"
+	"tasks/ResolveDependenciesTask.wren"
 ]
 
 Dependencies: {
