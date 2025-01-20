@@ -4,7 +4,7 @@
 
 import "soup-test" for SoupTest, SoupTestOperation
 import "../../Extension/Tasks/BuildTask" for BuildTask
-import "mwasplund|Soup.Build.Utils:./Path" for Path
+import "Soup|Build.Utils:./Path" for Path
 import "../../Test/Assert" for Assert
 
 class BuildTaskUnitTests {
@@ -341,7 +341,7 @@ class BuildTaskUnitTests {
 				Path.new("writefile.exe"),
 				[
 					"./script/Bundles.sml",
-					"Bundles: {\n\t\"Proj1\": { Root: \"./Proj1/\" }\n}\n",
+					"Bundles: {\n\t'Proj1': { Root: './Proj1/' }\n}\n",
 				],
 				Path.new("C:/target/"),
 				[],
