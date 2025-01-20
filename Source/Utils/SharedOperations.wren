@@ -18,7 +18,7 @@ class SharedOperations {
 		source,
 		destination) {
 		// Discover the dependency tool
-		var copyExecutable = SharedOperations.ResolveRuntimeDependencyRunExectable("mwasplund|copy")
+		var copyExecutable = SharedOperations.ResolveRuntimeDependencyRunExecutable("mwasplund|copy")
 
 		var title = "Copy [%(source)] -> [%(destination)]"
 
@@ -56,7 +56,7 @@ class SharedOperations {
 		}
 
 		// Discover the dependency tool
-		var mkdirExecutable = SharedOperations.ResolveRuntimeDependencyRunExectable("mwasplund|mkdir")
+		var mkdirExecutable = SharedOperations.ResolveRuntimeDependencyRunExecutable("mwasplund|mkdir")
 
 		var title = "MakeDir [%(directory)]"
 
@@ -115,7 +115,7 @@ class SharedOperations {
 			outputFiles)
 	}
 
-	static ResolveRuntimeDependencyRunExectable(dependencyName) {
+	static ResolveRuntimeDependencyRunExecutable(dependencyName) {
 		var dependencies = Soup.globalState["Dependencies"]
 		if (!dependencies.containsKey("Tool")) {
 			Fiber.abort("Missing Tool Dependencies for \"%(dependencyName)\"")
