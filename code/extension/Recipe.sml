@@ -1,10 +1,10 @@
 Name: 'Wren'
 Language: 'Wren|0'
-Version: '0.4.2'
+Version: 0.4.2
 Source: [
-	'Tasks/BuildTask.wren'
-	'Tasks/RecipeBuildTask.wren'
-	'Tasks/ResolveDependenciesTask.wren'
+	'tasks/BuildTask.wren'
+	'tasks/RecipeBuildTask.wren'
+	'tasks/ResolveDependenciesTask.wren'
 ]
 
 Dependencies: {

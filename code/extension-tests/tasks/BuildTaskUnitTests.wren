@@ -3,9 +3,9 @@
 // </copyright>
 
 import "soup-test" for SoupTest, SoupTestOperation
-import "../../Extension/Tasks/BuildTask" for BuildTask
+import "../../extension/tasks/BuildTask" for BuildTask
 import "Soup|Build.Utils:./Path" for Path
-import "../../Test/Assert" for Assert
+import "../../test/Assert" for Assert
 
 class BuildTaskUnitTests {
 	construct new() {
@@ -43,7 +43,7 @@ class BuildTaskUnitTests {
 		var dependenciesTable = {}
 		globalState["Dependencies"] = dependenciesTable
 		dependenciesTable["Tool"] = {
-			"mkdir": {
+			"mwasplund|mkdir": {
 				"SharedState": {
 					"Build": {
 						"RunExecutable": "/TARGET/mkdir.exe"
@@ -130,14 +130,14 @@ class BuildTaskUnitTests {
 		var dependenciesTable = {}
 		globalState["Dependencies"] = dependenciesTable
 		dependenciesTable["Tool"] = {
-			"copy": {
+			"mwasplund|copy": {
 				"SharedState": {
 					"Build": {
 						"RunExecutable": "/TARGET/copy.exe"
 					}
 				}
 			},
-			"mkdir": {
+			"mwasplund|mkdir": {
 				"SharedState": {
 					"Build": {
 						"RunExecutable": "/TARGET/mkdir.exe"
@@ -246,14 +246,14 @@ class BuildTaskUnitTests {
 		var dependenciesTable = {}
 		globalState["Dependencies"] = dependenciesTable
 		dependenciesTable["Tool"] = {
-			"copy": {
+			"mwasplund|copy": {
 				"SharedState": {
 					"Build": {
 						"RunExecutable": "/TARGET/copy.exe"
 					}
 				}
 			},
-			"mkdir": {
+			"mwasplund|mkdir": {
 				"SharedState": {
 					"Build": {
 						"RunExecutable": "/TARGET/mkdir.exe"

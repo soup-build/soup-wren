@@ -1,6 +1,13 @@
 import "./ListExtensions" for ListExtensions
+import "./Path" for Path
 
 class MapExtensions {
+	static Append(target, source) {
+		for (value in source) {
+			target[value.key] = value.value
+		}
+	}
+
 	static Equal(lhs, rhs) {
 		// System.print("MapEqual LHS: %(lhs)")
 		// System.print("MapEqual RHS: %(rhs)")
@@ -39,6 +46,24 @@ class MapExtensions {
 		}
 
 		return true
+	}
+
+	static ConvertToPathMap(map) {
+		var result = {}
+		for (value in map) {
+			result[value.key] = Path.new(value.value.toString)
+		}
+
+		return result
+	}
+
+	static ConvertFromPathMap(map) {
+		var result = {}
+		for (value in map) {
+			result[value.key] = value.value.toString
+		}
+
+		return result
 	}
 
 	static EnsureList(parent, key) {
