@@ -3,6 +3,7 @@ Language: 'Wren|0'
 Version: 0.8.0
 Source: [
 	'BuildOperation.wren'
+	'BuildOperationProxy.wren'
 	'ListExtensions.wren'
 	'MapExtensions.wren'
 	'Path.wren'
