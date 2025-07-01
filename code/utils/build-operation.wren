@@ -1,27 +1,23 @@
-// <copyright file="BuildOperation.wren" company="Soup">
+// <copyright file="build-operation.wren" company="Soup">
 // Copyright (c) Soup. All rights reserved.
 // </copyright>
 
-import "./ListExtensions" for ListExtensions
+import "./list-extensions" for ListExtensions
 
-class BuildOperationProxy {
+class BuildOperation {
 	construct new(
 		title,
 		workingDirectory,
 		executable,
 		arguments,
 		declaredInput,
-		resultFile,
-		finalizerTask,
-		finalizerState) {
+		declaredOutput) {
 		_title = title
 		_workingDirectory = workingDirectory
 		_executable = executable
 		_arguments = arguments
 		_declaredInput = declaredInput
-		_resultFile = resultFile
-		_finalizerTask = finalizerTask
-		_finalizerState = finalizerState
+		_declaredOutput = declaredOutput
 	}
 
 	Title { _title }
@@ -29,10 +25,9 @@ class BuildOperationProxy {
 	Executable { _executable}
 	Arguments { _arguments }
 	DeclaredInput { _declaredInput }
-	ResultFile { _resultFile }
-	FinalizerTask { _finalizerTask }
-	FinalizerState { _finalizerState }
+	DeclaredOutput { _declaredOutput }
 
+	
 	==(other) {
 		// System.print("BuildOperation==")
 		if (other is Null) {
@@ -44,12 +39,10 @@ class BuildOperationProxy {
 			this.Executable == other.Executable &&
 			ListExtensions.SequenceEqual(this.Arguments, other.Arguments) &&
 			ListExtensions.SequenceEqual(this.DeclaredInput, other.DeclaredInput) &&
-			this.ResultFile == other.ResultFile &&
-			this.FinalizerTask == other.FinalizerTask &&
-			this.FinalizerState == other.FinalizerState
+			ListExtensions.SequenceEqual(this.DeclaredOutput, other.DeclaredOutput)
 	}
 
 	toString {
-		return "BuildOperationProxy { Title=%(_title), WorkingDirectory=%(_workingDirectory), Executable=%(_executable), Arguments=%(_arguments), DeclaredInput=%(_declaredInput), ResultFile=%(_resultFile), FinalizerTask=%(_finalizerTask), FinalizerState=%(_finalizerState) }"
+		return "BuildOperation { Title=%(_title), WorkingDirectory=%(_workingDirectory), Executable=%(_executable), Arguments=%(_arguments), DeclaredInput=%(_declaredInput), DeclaredOutput=%(_declaredOutput) }"
 	}
 }

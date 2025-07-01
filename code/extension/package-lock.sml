@@ -1,0 +1,20 @@
+Version: 5
+Closures: {
+	Root: {
+		Wren: {
+			'Soup|Build.Utils': { Version: 0.7.0, Build: 'Build0', Tool: 'Tool0' }
+			Wren: { Version: './', Build: 'Build0', Tool: 'Tool0' }
+		}
+	}
+	Build0: {
+		Wren: {
+			'Soup|Wren': { Version: 0.4.3 }
+		}
+	}
+	Tool0: {
+		'C++': {
+			'mwasplund|copy': { Version: 'C:/Users/mwasp/dev/repos/soup/code/tools/copy/' }
+			'mwasplund|mkdir': { Version: 'C:/Users/mwasp/dev/repos/soup/code/tools/mkdir/' }
+		}
+	}
+}

@@ -1,12 +1,11 @@
 Name: 'Wren'
 Language: 'Wren|0'
-Version: 0.4.2
+Version: 0.5.0
 Source: [
-	'tasks/BuildTask.wren'
-	'tasks/RecipeBuildTask.wren'
-	'tasks/ResolveDependenciesTask.wren'
+	'tasks/build-task.wren'
+	'tasks/recipe-build-task.wren'
+	'tasks/resolve-dependencies-task.wren'
 ]
-
 Dependencies: {
 	Runtime: [
 		'Soup|Build.Utils@0'
