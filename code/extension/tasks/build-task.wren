@@ -94,7 +94,7 @@ class BuildTask is SoupTask {
 			sourceRootDirectory,
 			targetRootDirectory,
 			scriptDirectory,
-			"Main",
+			"main",
 			sourceFiles)
 
 		// Copy all module dependencies

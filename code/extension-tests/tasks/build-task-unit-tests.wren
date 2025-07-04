@@ -57,7 +57,7 @@ class BuildTaskUnitTests {
 		// Verify expected logs
 		Assert.ListEqual(
 			[
-				"INFO: Copy Module: Main",
+				"INFO: Copy Module: main",
 				"INFO: Build Generate Done",
 			],
 			SoupTest.logs)
@@ -151,7 +151,7 @@ class BuildTaskUnitTests {
 		// Verify expected logs
 		Assert.ListEqual(
 			[
-				"INFO: Copy Module: Main",
+				"INFO: Copy Module: main",
 				"INFO: Build Generate Done",
 			],
 			SoupTest.logs)
@@ -267,7 +267,7 @@ class BuildTaskUnitTests {
 		// Verify expected logs
 		Assert.ListEqual(
 			[
-				"INFO: Copy Module: Main",
+				"INFO: Copy Module: main",
 				"INFO: Copy Module: Proj1",
 				"INFO: Build Generate Done",
 			],
