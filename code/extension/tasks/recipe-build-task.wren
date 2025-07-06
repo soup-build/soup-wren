@@ -57,7 +57,7 @@ class RecipeBuildTask is SoupTask {
 
 		if (sourceFiles != null) {
 			ListExtensions.Append(
-				MapExtensions.EnsureList(build, "Source"),
+				MapExtensions.EnsureList(buildTable, "Source"),
 				sourceFiles)
 		}
 	}
