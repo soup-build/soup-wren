@@ -45,7 +45,7 @@ class RecipeBuildTask is SoupTask {
 		var scriptDirectory = Path.new("script/")
 
 		// Load the source files if present
-		var sourceFiles = []
+		var sourceFiles = null
 		if (recipeTable.containsKey("Source")) {
 			sourceFiles = recipeTable["Source"]
 		}
@@ -55,8 +55,10 @@ class RecipeBuildTask is SoupTask {
 		buildTable["TargetRootDirectory"] = targetDirectory.toString
 		buildTable["ScriptDirectory"] = scriptDirectory.toString
 
-		ListExtensions.Append(
-			MapExtensions.EnsureList(buildTable, "Source"),
-			sourceFiles)
+		if (sourceFiles != null) {
+			ListExtensions.Append(
+				MapExtensions.EnsureList(build, "Source"),
+				sourceFiles)
+		}
 	}
 }

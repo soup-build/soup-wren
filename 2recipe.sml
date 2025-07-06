@@ -1,8 +1,9 @@
 Name: 'Wren'
 Language: 'Wren|0'
-Version: 0.5.1
+Version: 0.5.2
 Source: [
 	'tasks/build-task.wren'
+	'tasks/expand-source-task.wren'
 	'tasks/recipe-build-task.wren'
 	'tasks/resolve-dependencies-task.wren'
 ]
