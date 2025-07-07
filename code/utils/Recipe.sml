@@ -1,13 +1,12 @@
 Name: 'Build.Utils'
 Language: 'Wren|0'
-Version: 0.8.0
+Version: 0.9.0
 Source: [
-	'BuildOperation.wren'
-	'BuildOperationProxy.wren'
-	'ListExtensions.wren'
-	'MapExtensions.wren'
-	'Path.wren'
-	'SemanticVersion.wren'
-	'Set.wren'
-	'SharedOperations.wren'
+	'build-operation.wren'
+	'list-extensions.wren'
+	'map-extensions.wren'
+	'path.wren'
+	'semantic-version.wren'
+	'set.wren'
+	'shared-operations.wren'
 ]

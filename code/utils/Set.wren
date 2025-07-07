@@ -1,3 +1,6 @@
+// <copyright file="set.wren" company="Soup">
+// Copyright (c) Soup. All rights reserved.
+// </copyright>
 
 class Set {
 	construct new() {
