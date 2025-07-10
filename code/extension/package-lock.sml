@@ -9,7 +9,7 @@ Closures: {
 	}
 	Build0: {
 		Wren: {
-			'Soup|Wren': { Version: 0.5.1 }
+			'Soup|Wren': { Version: 0.5.3 }
 		}
 	}
 	Tool0: {
