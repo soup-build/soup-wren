@@ -1,6 +1,6 @@
 Name: 'Wren'
 Language: 'Wren|0'
-Version: 0.5.3
+Version: 0.5.4
 Source: [
 	'tasks/build-task.wren'
 	'tasks/expand-source-task.wren'

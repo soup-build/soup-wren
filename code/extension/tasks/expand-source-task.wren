@@ -3,6 +3,7 @@
 // </copyright>
 
 import "soup" for Soup, SoupTask
+import "Soup|Build.Utils:./glob" for Glob
 import "Soup|Build.Utils:./path" for Path
 import "Soup|Build.Utils:./list-extensions" for ListExtensions
 import "Soup|Build.Utils:./map-extensions" for MapExtensions
@@ -34,38 +35,53 @@ class ExpandSourceTask is SoupTask {
 
 		var buildTable = activeState["Build"]
 
-		Soup.info("Check Expand Source")
-		if (!buildTable.containsKey("Source")) {
-			Soup.info("Expand Source")
-			var filesystem = globalState["FileSystem"]
-			var sourceFiles = ExpandSourceTask.DiscoverCompileFiles(filesystem, Path.new())
-
-			ListExtensions.Append(
-				MapExtensions.EnsureList(buildTable, "Source"),
-				ListExtensions.ConvertFromPathList(sourceFiles))
+		var allowedPaths = []
+		if (buildTable.containsKey("KnownSource")) {
+			// Fill in the info on existing source files
+			allowedPaths = ListExtensions.ConvertToPathList(buildTable["KnownSource"])
+		} else {
+			// Default to matching all Wren files under the root
+			allowedPaths.add(Path.new("./**/*.wren"))
 		}
+
+		Soup.info("Expand Source")
+		var filesystem = globalState["FileSystem"]
+		var sourceFiles = ExpandSourceTask.DiscoverCompileFiles(filesystem, Path.new(), allowedPaths)
+		
+		ListExtensions.Append(
+			MapExtensions.EnsureList(buildTable, "Source"),
+			ListExtensions.ConvertFromPathList(sourceFiles))
 	}
 
-	static DiscoverCompileFiles(currentDirectory, workingDirectory) {
-		Soup.info("Discover Files %(workingDirectory)")
+	static DiscoverCompileFiles(currentDirectory, workingDirectory, allowedPaths) {
 		var files = []
 		for (directoryEntity in currentDirectory) {
 			if (directoryEntity is String) {
-				if (directoryEntity.endsWith(".wren")) {
-					var file = workingDirectory + Path.new(directoryEntity)
-					Soup.info("Found Wren File: %(file)")
+				var file = workingDirectory + Path.new(directoryEntity)
+				Soup.info("Check File: %(file)")
+				if (ExpandSourceTask.IsMatchAny(allowedPaths, file)) {
 					files.add(file)
 				}
 			} else {
 				for (child in directoryEntity) {
 					var directory = workingDirectory + Path.new(child.key)
 					Soup.info("Found Directory: %(directory)")
-					var subFiles = ExpandSourceTask.DiscoverCompileFiles(child.value, directory)
+					var subFiles = ExpandSourceTask.DiscoverCompileFiles(child.value, directory, allowedPaths)
 					ListExtensions.Append(files, subFiles)
 				}
 			}
 		}
 
 		return files
+	}
+
+	static IsMatchAny(allowedPaths, file) {
+		for (allowedPath in allowedPaths) {
+			if (Glob.IsMatch(allowedPath, file)) {
+				return true
+			}
+		}
+
+		return false
 	}
 }

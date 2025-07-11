@@ -1,6 +1,6 @@
 Name: 'Build.Utils'
 Language: 'Wren|0'
-Version: 0.9.0
+Version: 0.9.1
 Source: [
 	'build-operation.wren'
 	'glob.wren'

@@ -55,6 +55,8 @@ class GlobUnitTests {
 		this.IsMatch_AnyFile_SingleFileManyDirectories()
 		System.print("GlobUnitTests.IsMatch_AnyFile_SingleFile()")
 		this.IsMatch_AnyFile_SingleFile()
+		System.print("GlobUnitTests.IsMatch_AnyTextFile_SingleFile()")
+		this.IsMatch_AnyTextFile_SingleFile()
 	}
 
 	IsMatch_SimpleFile_Exact() {
@@ -174,6 +176,12 @@ class GlobUnitTests {
 	IsMatch_AnyFile_SingleFile() {
 		var target = Path.new("./File.txt")
 		var pattern = Path.new("./**/*")
+		Assert.True(Glob.IsMatch(pattern, target))
+	}
+
+	IsMatch_AnyTextFile_SingleFile() {
+		var target = Path.new("./File.txt")
+		var pattern = Path.new("./**/*.txt")
 		Assert.True(Glob.IsMatch(pattern, target))
 	}
 }
