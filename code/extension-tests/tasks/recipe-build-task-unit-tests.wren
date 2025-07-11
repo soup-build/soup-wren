@@ -3,8 +3,8 @@
 // </copyright>
 
 import "soup-test" for SoupTest
-import "../../extension/tasks/RecipeBuildTask" for RecipeBuildTask
-import "../../test/Assert" for Assert
+import "../../extension/tasks/recipe-build-task" for RecipeBuildTask
+import "../../test/assert" for Assert
 
 class RecipeBuildTaskUnitTests {
 	construct new() {

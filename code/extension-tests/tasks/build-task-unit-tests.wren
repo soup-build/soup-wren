@@ -337,7 +337,7 @@ class BuildTaskUnitTests {
 					Path.new("script/Proj1/TestFile2.wren"),
 				]),
 			SoupTestOperation.new(
-				"WriteFile [./script/Bundles.sml]",
+				"WriteFile [./script/bundles.sml]",
 				Path.new("writefile.exe"),
 				[
 					"./script/bundles.sml",
