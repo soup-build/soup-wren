@@ -1,11 +1,11 @@
-// <copyright file="BuildTaskUnitTests.wren" company="Soup">
+// <copyright file="build-task-unit-tests.wren" company="Soup">
 // Copyright (c) Soup. All rights reserved.
 // </copyright>
 
 import "soup-test" for SoupTest, SoupTestOperation
-import "../../Extension/Tasks/BuildTask" for BuildTask
-import "Soup.Build.Utils:./Path" for Path
-import "../../Test/Assert" for Assert
+import "../../extension/tasks/build-task" for BuildTask
+import "Soup|Build.Utils:./path" for Path
+import "../../test/assert" for Assert
 
 class BuildTaskUnitTests {
 	construct new() {
@@ -43,7 +43,7 @@ class BuildTaskUnitTests {
 		var dependenciesTable = {}
 		globalState["Dependencies"] = dependenciesTable
 		dependenciesTable["Tool"] = {
-			"mkdir": {
+			"mwasplund|mkdir": {
 				"SharedState": {
 					"Build": {
 						"RunExecutable": "/TARGET/mkdir.exe"
@@ -57,7 +57,7 @@ class BuildTaskUnitTests {
 		// Verify expected logs
 		Assert.ListEqual(
 			[
-				"INFO: Copy Module: Main",
+				"INFO: Copy Module: main",
 				"INFO: Build Generate Done",
 			],
 			SoupTest.logs)
@@ -76,27 +76,27 @@ class BuildTaskUnitTests {
 					Path.new("script/"),
 				]),
 			SoupTestOperation.new(
-				"MakeDir [./script/Main/]",
+				"MakeDir [./script/main/]",
 				Path.new("/TARGET/mkdir.exe"),
 				[
-					"./script/Main/",
+					"./script/main/",
 				],
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("script/Main/"),
+					Path.new("script/main/"),
 				]),
 			SoupTestOperation.new(
-				"WriteFile [./script/Bundles.sml]",
+				"WriteFile [./script/bundles.sml]",
 				Path.new("writefile.exe"),
 				[
-					"./script/Bundles.sml",
+					"./script/bundles.sml",
 					"Bundles: {\n}\n",
 				],
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("script/Bundles.sml"),
+					Path.new("script/bundles.sml"),
 				]),
 		]
 
@@ -130,14 +130,14 @@ class BuildTaskUnitTests {
 		var dependenciesTable = {}
 		globalState["Dependencies"] = dependenciesTable
 		dependenciesTable["Tool"] = {
-			"copy": {
+			"mwasplund|copy": {
 				"SharedState": {
 					"Build": {
 						"RunExecutable": "/TARGET/copy.exe"
 					}
 				}
 			},
-			"mkdir": {
+			"mwasplund|mkdir": {
 				"SharedState": {
 					"Build": {
 						"RunExecutable": "/TARGET/mkdir.exe"
@@ -151,7 +151,7 @@ class BuildTaskUnitTests {
 		// Verify expected logs
 		Assert.ListEqual(
 			[
-				"INFO: Copy Module: Main",
+				"INFO: Copy Module: main",
 				"INFO: Build Generate Done",
 			],
 			SoupTest.logs)
@@ -170,41 +170,41 @@ class BuildTaskUnitTests {
 					Path.new("./script/"),
 				]),
 			SoupTestOperation.new(
-				"MakeDir [./script/Main/]",
+				"MakeDir [./script/main/]",
 				Path.new("/TARGET/mkdir.exe"),
 				[
-					"./script/Main/",
+					"./script/main/",
 				],
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("script/Main/"),
+					Path.new("script/main/"),
 				]),
 			SoupTestOperation.new(
-				"Copy [C:/source/TestFile.wren] -> [./script/Main/TestFile.wren]",
+				"Copy [C:/source/TestFile.wren] -> [./script/main/TestFile.wren]",
 				Path.new("/TARGET/copy.exe"),
 				[
 					"C:/source/TestFile.wren",
-					"./script/Main/TestFile.wren",
+					"./script/main/TestFile.wren",
 				],
 				Path.new("C:/target/"),
 				[
 					Path.new("C:/source/TestFile.wren"),
 				],
 				[
-					Path.new("script/Main/TestFile.wren"),
+					Path.new("script/main/TestFile.wren"),
 				]),
 			SoupTestOperation.new(
-				"WriteFile [./script/Bundles.sml]",
+				"WriteFile [./script/bundles.sml]",
 				Path.new("writefile.exe"),
 				[
-					"./script/Bundles.sml",
+					"./script/bundles.sml",
 					"Bundles: {\n}\n",
 				],
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("script/Bundles.sml"),
+					Path.new("script/bundles.sml"),
 				]),
 		]
 
@@ -246,14 +246,14 @@ class BuildTaskUnitTests {
 		var dependenciesTable = {}
 		globalState["Dependencies"] = dependenciesTable
 		dependenciesTable["Tool"] = {
-			"copy": {
+			"mwasplund|copy": {
 				"SharedState": {
 					"Build": {
 						"RunExecutable": "/TARGET/copy.exe"
 					}
 				}
 			},
-			"mkdir": {
+			"mwasplund|mkdir": {
 				"SharedState": {
 					"Build": {
 						"RunExecutable": "/TARGET/mkdir.exe"
@@ -267,7 +267,7 @@ class BuildTaskUnitTests {
 		// Verify expected logs
 		Assert.ListEqual(
 			[
-				"INFO: Copy Module: Main",
+				"INFO: Copy Module: main",
 				"INFO: Copy Module: Proj1",
 				"INFO: Build Generate Done",
 			],
@@ -287,29 +287,29 @@ class BuildTaskUnitTests {
 					Path.new("./script/"),
 				]),
 			SoupTestOperation.new(
-				"MakeDir [./script/Main/]",
+				"MakeDir [./script/main/]",
 				Path.new("/TARGET/mkdir.exe"),
 				[
-					"./script/Main/",
+					"./script/main/",
 				],
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("script/Main/"),
+					Path.new("script/main/"),
 				]),
 			SoupTestOperation.new(
-				"Copy [C:/source/TestFile.wren] -> [./script/Main/TestFile.wren]",
+				"Copy [C:/source/TestFile.wren] -> [./script/main/TestFile.wren]",
 				Path.new("/TARGET/copy.exe"),
 				[
 					"C:/source/TestFile.wren",
-					"./script/Main/TestFile.wren",
+					"./script/main/TestFile.wren",
 				],
 				Path.new("C:/target/"),
 				[
 					Path.new("C:/source/TestFile.wren"),
 				],
 				[
-					Path.new("script/Main/TestFile.wren"),
+					Path.new("script/main/TestFile.wren"),
 				]),
 			SoupTestOperation.new(
 				"MakeDir [./script/Proj1/]",
@@ -337,16 +337,16 @@ class BuildTaskUnitTests {
 					Path.new("script/Proj1/TestFile2.wren"),
 				]),
 			SoupTestOperation.new(
-				"WriteFile [./script/Bundles.sml]",
+				"WriteFile [./script/bundles.sml]",
 				Path.new("writefile.exe"),
 				[
-					"./script/Bundles.sml",
-					"Bundles: {\n\t\"Proj1\": { Root: \"./Proj1/\" }\n}\n",
+					"./script/bundles.sml",
+					"Bundles: {\n\t'Proj1': { Root: './Proj1/' }\n}\n",
 				],
 				Path.new("C:/target/"),
 				[],
 				[
-					Path.new("script/Bundles.sml"),
+					Path.new("script/bundles.sml"),
 				]),
 		]
 

@@ -1,4 +1,4 @@
-// <copyright file="SemanticVersion.wren" company="Soup">
+// <copyright file="semantic-version.wren" company="Soup">
 // Copyright (c) Soup. All rights reserved.
 // </copyright>
 

@@ -1,13 +1,13 @@
-﻿// <copyright file="BuildTask.wren" company="Soup">
+﻿// <copyright file="build-task.wren" company="Soup">
 // Copyright (c) Soup. All rights reserved.
 // </copyright>
 
 import "soup" for Soup, SoupTask
-import "Soup.Build.Utils:./Path" for Path
-import "Soup.Build.Utils:./ListExtensions" for ListExtensions
-import "Soup.Build.Utils:./MapExtensions" for MapExtensions
-import "Soup.Build.Utils:./SharedOperations" for SharedOperations
-import "Soup.Build.Utils:./Set" for Set
+import "Soup|Build.Utils:./path" for Path
+import "Soup|Build.Utils:./list-extensions" for ListExtensions
+import "Soup|Build.Utils:./map-extensions" for MapExtensions
+import "Soup|Build.Utils:./shared-operations" for SharedOperations
+import "Soup|Build.Utils:./set" for Set
 
 class BuildTask is SoupTask {
 	/// <summary>
@@ -43,7 +43,7 @@ class BuildTask is SoupTask {
 			moduleDependencies = buildTable["ModuleDependencies"]
 		}
 
-		var moduleBundlesFile = scriptDirectory + Path.new("Bundles.sml")
+		var moduleBundlesFile = scriptDirectory + Path.new("bundles.sml")
 		var buildOperations = BuildTask.build(
 			sourceRootDirectory,
 			targetRootDirectory,
@@ -53,7 +53,7 @@ class BuildTask is SoupTask {
 			moduleBundlesFile)
 
 		// Always pass along required input to shared build tasks
-		var mainModuleTargetDirectory = targetRootDirectory + scriptDirectory + Path.new("Main/")
+		var mainModuleTargetDirectory = targetRootDirectory + scriptDirectory + Path.new("main/")
 		var moduleBundlesTargetFile = targetRootDirectory + moduleBundlesFile
 		var sharedBuildTable = MapExtensions.EnsureTable(sharedState, "Build")
 		sharedBuildTable["TargetDirectory"] = mainModuleTargetDirectory.toString
@@ -94,7 +94,7 @@ class BuildTask is SoupTask {
 			sourceRootDirectory,
 			targetRootDirectory,
 			scriptDirectory,
-			"Main",
+			"main",
 			sourceFiles)
 
 		// Copy all module dependencies
@@ -116,8 +116,8 @@ class BuildTask is SoupTask {
 		var moduleBundles = ""
 		moduleBundles = moduleBundles + "Bundles: {\n"
 		for (moduleName in moduleDependencies.keys) {
-			var moduleBundleDirectory = Path.new(moduleName + "/")
-			moduleBundles = moduleBundles + "\t\"%(moduleName)\": { Root: \"%(moduleBundleDirectory)\" }\n"
+			var moduleBundleDirectory = Path.new(moduleName.replace("|", "/") + "/")
+			moduleBundles = moduleBundles + "\t'%(moduleName)': { Root: '%(moduleBundleDirectory)' }\n"
 		}
 
 		moduleBundles = moduleBundles + "}\n"
@@ -141,7 +141,7 @@ class BuildTask is SoupTask {
 		var result = []
 
 		Soup.info("Copy Module: %(name)")
-		var moduleDirectory = scriptDirectory + Path.new(name + "/")
+		var moduleDirectory = scriptDirectory + Path.new(name.replace("|", "/") + "/")
 
 		// Discover all unique sub folders
 		var folderSet = Set.new()

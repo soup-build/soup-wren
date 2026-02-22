@@ -1,11 +1,11 @@
-﻿// <copyright file="RecipeBuildTask.wren" company="Soup">
+﻿// <copyright file="recipe-build-task.wren" company="Soup">
 // Copyright (c) Soup. All rights reserved.
 // </copyright>
 
 import "soup" for Soup, SoupTask
-import "Soup.Build.Utils:./Path" for Path
-import "Soup.Build.Utils:./ListExtensions" for ListExtensions
-import "Soup.Build.Utils:./MapExtensions" for MapExtensions
+import "Soup|Build.Utils:./path" for Path
+import "Soup|Build.Utils:./list-extensions" for ListExtensions
+import "Soup|Build.Utils:./map-extensions" for MapExtensions
 
 /// <summary>
 /// The recipe build task that knows how to build a single recipe
@@ -45,9 +45,9 @@ class RecipeBuildTask is SoupTask {
 		var scriptDirectory = Path.new("script/")
 
 		// Load the source files if present
-		var sourceFiles = []
+		var knownSourceFiles = null
 		if (recipeTable.containsKey("Source")) {
-			sourceFiles = recipeTable["Source"]
+			knownSourceFiles = recipeTable["Source"]
 		}
 
 		buildTable["TargetName"] = name
@@ -55,8 +55,10 @@ class RecipeBuildTask is SoupTask {
 		buildTable["TargetRootDirectory"] = targetDirectory.toString
 		buildTable["ScriptDirectory"] = scriptDirectory.toString
 
-		ListExtensions.Append(
-			MapExtensions.EnsureList(buildTable, "Source"),
-			sourceFiles)
+		if (knownSourceFiles != null) {
+			ListExtensions.Append(
+				MapExtensions.EnsureList(buildTable, "KnownSource"),
+				knownSourceFiles)
+		}
 	}
 }

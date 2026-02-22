@@ -1,8 +1,8 @@
-// <copyright file="BuildOperation.wren" company="Soup">
+// <copyright file="build-operation.wren" company="Soup">
 // Copyright (c) Soup. All rights reserved.
 // </copyright>
 
-import "./ListExtensions" for ListExtensions
+import "./list-extensions" for ListExtensions
 
 class BuildOperation {
 	construct new(

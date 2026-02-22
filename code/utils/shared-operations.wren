@@ -1,10 +1,10 @@
-// <copyright file="SharedOperations.wren" company="Soup">
+// <copyright file="shared-operations.wren" company="Soup">
 // Copyright (c) Soup. All rights reserved.
 // </copyright>
 
 import "soup" for Soup
-import "./BuildOperation" for BuildOperation
-import "./Path" for Path
+import "./build-operation" for BuildOperation
+import "./path" for Path
 
 /// <summary>
 /// The Shared Operations class
@@ -18,7 +18,7 @@ class SharedOperations {
 		source,
 		destination) {
 		// Discover the dependency tool
-		var copyExecutable = SharedOperations.ResolveRuntimeDependencyRunExectable("copy")
+		var copyExecutable = SharedOperations.ResolveRuntimeDependencyRunExecutable("mwasplund|copy")
 
 		var title = "Copy [%(source)] -> [%(destination)]"
 
@@ -56,7 +56,7 @@ class SharedOperations {
 		}
 
 		// Discover the dependency tool
-		var mkdirExecutable = SharedOperations.ResolveRuntimeDependencyRunExectable("mkdir")
+		var mkdirExecutable = SharedOperations.ResolveRuntimeDependencyRunExecutable("mwasplund|mkdir")
 
 		var title = "MakeDir [%(directory)]"
 
@@ -115,18 +115,18 @@ class SharedOperations {
 			outputFiles)
 	}
 
-	static ResolveRuntimeDependencyRunExectable(dependencyName) {
+	static ResolveRuntimeDependencyRunExecutable(dependencyName) {
 		var dependencies = Soup.globalState["Dependencies"]
 		if (!dependencies.containsKey("Tool")) {
 			Fiber.abort("Missing Tool Dependencies for \"%(dependencyName)\"")
 		}
 
-		var runtimeDependencies = dependencies["Tool"]
-		if (!runtimeDependencies.containsKey(dependencyName)) {
+		var toolDependencies = dependencies["Tool"]
+		if (!toolDependencies.containsKey(dependencyName)) {
 			Fiber.abort("Missing Tool Dependency \"%(dependencyName)\"")
 		}
 
-		var dependency = runtimeDependencies[dependencyName]
+		var dependency = toolDependencies[dependencyName]
 		return dependency["SharedState"]["Build"]["RunExecutable"]
 	}
 }

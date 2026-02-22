@@ -1,10 +1,10 @@
-// <copyright file="RecipeBuildTaskUnitTests.wren" company="Soup">
+// <copyright file="recipe-build-task-unit-tests.wren" company="Soup">
 // Copyright (c) Soup. All rights reserved.
 // </copyright>
 
 import "soup-test" for SoupTest
-import "../../Extension/Tasks/RecipeBuildTask" for RecipeBuildTask
-import "../../Test/Assert" for Assert
+import "../../extension/tasks/recipe-build-task" for RecipeBuildTask
+import "../../test/assert" for Assert
 
 class RecipeBuildTaskUnitTests {
 	construct new() {

@@ -1,5 +1,8 @@
+// <copyright file="list-extensions.wren" company="Soup">
+// Copyright (c) Soup. All rights reserved.
+// </copyright>
 
-import "./Path" for Path
+import "./path" for Path
 
 class ListExtensions {
 	static SequenceEqual(lhs, rhs) {

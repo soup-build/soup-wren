@@ -1,9 +1,9 @@
-// <copyright file="PathTests.wren" company="Soup">
+// <copyright file="path-unit-tests.wren" company="Soup">
 // Copyright (c) Soup. All rights reserved.
 // </copyright>
 
-import "Soup.Build.Utils:./Path" for Path
-import "../Test/Assert" for Assert
+import "Soup|Build.Utils:./path" for Path
+import "../test/assert" for Assert
 
 class PathUnitTests {
 	construct new() {
