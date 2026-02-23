@@ -12,11 +12,11 @@ class BuildTaskUnitTests {
 	}
 
 	RunTests() {
-		System.print("BuildTaskUnitTests.Build_Execute_NoSource")
+		System.print("BuildTaskUnitTests.Build_Execute_NoSource()")
 		this.Build_Execute_NoSource()
-		System.print("BuildTaskUnitTests.Build_Executable_Source")
+		System.print("BuildTaskUnitTests.Build_Executable_Source()")
 		this.Build_Executable_Source()
-		System.print("BuildTaskUnitTests.Build_Executable_RuntimeDependency")
+		System.print("BuildTaskUnitTests.Build_Executable_RuntimeDependency()")
 		this.Build_Executable_RuntimeDependency()
 	}
 
