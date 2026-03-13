@@ -1,4 +1,4 @@
-Name: 'Wren'
+Name: 'wren'
 Language: 'Wren|0'
 Version: 0.5.4
 Source: [
@@ -9,7 +9,7 @@ Source: [
 ]
 Dependencies: {
 	Runtime: [
-		'Soup|Build.Utils@0'
+		'soup|build-utils@0'
 	]
 	Tool: [
 		'[C++]mwasplund|copy@1'
