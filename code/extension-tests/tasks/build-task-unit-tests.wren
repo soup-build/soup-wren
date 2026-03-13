@@ -4,7 +4,7 @@
 
 import "soup-test" for SoupTest, SoupTestOperation
 import "../../extension/tasks/build-task" for BuildTask
-import "Soup|Build.Utils:./path" for Path
+import "soup|build-utils:./path" for Path
 import "../../test/assert" for Assert
 
 class BuildTaskUnitTests {
