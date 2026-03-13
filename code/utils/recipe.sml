@@ -1,4 +1,4 @@
-Name: 'Build.Utils'
+Name: 'build-utils'
 Language: 'Wren|0'
 Version: 0.9.1
 Source: [
