@@ -30,6 +30,17 @@ class SemanticVersion {
 	/// </summary>
 	/// <param name="major">The major version.</param>
 	/// <param name="minor">The minor version.</param>
+	construct new(major, minor) {
+		_major = major
+		_minor = minor
+		_patch = null
+	}
+
+	/// <summary>
+	/// Initializes a new instance of the <see cref="SemanticVersion"/> class.
+	/// </summary>
+	/// <param name="major">The major version.</param>
+	/// <param name="minor">The minor version.</param>
 	/// <param name="patch">The patch version.</param>
 	construct new(major, minor, patch) {
 		_major = major
@@ -94,20 +105,20 @@ class SemanticVersion {
 
 	static IsUpCompatible(requested, target) {
 		// The target version must be fully qualified
-		if (!target.Minor.HasValue) {
+		if (target.Minor is Null) {
 			Fiber.abort("Target must have minor version")
 		}
-		if (!target.Patch.HasValue) {
+		if (target.Patch is Null) {
 			Fiber.abort("Target must have patch version")
 		}
 
 		if (requested.Major == target.Major) {
-			if (!requested.Minor.HasValue || target.Minor > requested.Minor) {
+			if (requested.Minor is Null || target.Minor > requested.Minor) {
 				// If the Minor version is acceptable increase then allow it
 				return true
 			} else if (requested.Minor == target.Minor) {
 				// Check that the patch is not backtracking
-				return !requested.Patch.HasValue || target.Patch >= requested.Patch
+				return requested.Patch is Null || target.Patch >= requested.Patch
 			} else {
 				// Minor version drops not allowed
 				return false
